@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "bcb561bd-b524-4ccd-9cb8-4652847af5c6",
+		"name": "XuTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://reqres.in/api/users?page=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ce1c22f-141e-42d9-a8f4-14553661410f",
+						"exec": [
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify Json values\", function () { ",
+							"    pm.expect(jsonData.page).is.to.equal(2);",
+							"    pm.expect(jsonData.data[0].id).is.to.equal(7); ",
+							"    pm.expect(jsonData.data[0].email).is.to.equal(\"michael.lawson@reqres.in\");",
+							"    pm.expect(jsonData.data[0].avatar).is.to.have.string(\"s3.amazonaws.com\");",
+							"    pm.expect(jsonData.data[1].id).is.to.equal(8);",
+							"    // and so on and so on",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
