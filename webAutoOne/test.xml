@@ -1,0 +1,7 @@
+<suite name="sample suite">
+<test name="learning jenkins selenium">
+<classes>
+   <class name="webAutoOne.autoOne"></class>
+</classes>
+</test>
+</suite>
