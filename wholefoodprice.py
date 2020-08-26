@@ -24,8 +24,6 @@ inputElement = driver.find_element_by_class_name("Input-InputField--KUzM1")
 inputElement.send_keys('94127')
 #inputElement.send_keys(Keys.ENTER)
 time.sleep(2)
-#s1 = Select(driver.find_element_by_class_name("StoreSelector-DropdownOptions--vrkEe"))
-#s1.select_by_visible_text('Ocean — 1150 Ocean Ave, San Francisco, CA 94112')
 select = driver.find_elements_by_class_name("StoreSelector-Option--mQyct")
 for option in select:
     if '1150 Ocean Ave' in option.text:
