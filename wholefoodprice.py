@@ -61,9 +61,9 @@ try:
     server.sendmail(sent_from, to, email_text)
     server.close()
 
-    print 'Email sent!'
+    print ("Email sent!")
 except:
-    print 'Something went wrong...'
+    print ("Something went wrong...")
 
 
 #html_content = requests.get(url).text
