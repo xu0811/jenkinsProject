@@ -42,7 +42,7 @@ gmail_user = 'ready6302016@gmail.com'
 gmail_password = '06302016'
 
 sent_from = gmail_user
-to = ['sean0811@gmail.com', 'bill@gmail.com']
+to = ['sean0811@gmail.com']
 subject = 'OMG Super Important Message' + price.text
 body = 'Hey, what\'s up?\n\n- You'
 
@@ -55,8 +55,9 @@ Subject: %s
 """ % (sent_from, ", ".join(to), subject, body)
 
 try:
-    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server = smtplib.SMTP('smtp.gmail.com', 465)
     server.ehlo()
+    server.starttls()
     server.login(gmail_user, gmail_password)
     server.sendmail(sent_from, to, email_text)
     server.close()
