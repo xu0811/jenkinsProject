@@ -10,6 +10,7 @@ import smtplib
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from send_email import sendmail
 
 #display = Display(visible=0, size=(800, 600))
 #display.start()
@@ -37,39 +38,4 @@ print (price.text)
 
 driver.quit()
 
-
-gmail_user = 'ready6302016@gmail.com'
-gmail_password = '06302016'
-
-sent_from = gmail_user
-to = ['sean0811@gmail.com']
-subject = 'OMG Super Important Message' + price.text
-body = 'Hey, what\'s up?\n\n- You'
-
-email_text = """\
-From: %s
-To: %s
-Subject: %s
-
-%s
-""" % (sent_from, ", ".join(to), subject, body)
-
-try:
-    server = smtplib.SMTP('smtp.gmail.com', 465)
-    server.ehlo()
-    server.starttls()
-    server.login(gmail_user, gmail_password)
-    server.sendmail(sent_from, to, email_text)
-    server.close()
-
-    print ("Email sent!")
-except:
-    print ("Something went wrong...")
-
-
-#html_content = requests.get(url).text
-# Parse the html content
-#soup = BeautifulSoup(html_content, "lxml")
-#gdp_data = soup.find("div", attrs={"class": "ProductHeader-Available--1hp_M"})
-
-#print(gdp_data.get_text())
+sendmail(price.text)
