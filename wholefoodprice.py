@@ -6,6 +6,7 @@ import requests
 import psycopg2
 import re
 import time
+import smtplib
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -35,6 +36,34 @@ price = driver.find_element_by_xpath('//*[@id="app"]/div/div/div/div[2]/div[2]/d
 print (price.text)
 
 driver.quit()
+
+
+gmail_user = 'ready6302016@gmail.com'
+gmail_password = '06302016'
+
+sent_from = gmail_user
+to = ['sean0811@gmail.com', 'bill@gmail.com']
+subject = 'OMG Super Important Message' + price.text
+body = 'Hey, what\'s up?\n\n- You'
+
+email_text = """\
+From: %s
+To: %s
+Subject: %s
+
+%s
+""" % (sent_from, ", ".join(to), subject, body)
+
+try:
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.ehlo()
+    server.login(gmail_user, gmail_password)
+    server.sendmail(sent_from, to, email_text)
+    server.close()
+
+    print 'Email sent!'
+except:
+    print 'Something went wrong...'
 
 
 #html_content = requests.get(url).text
