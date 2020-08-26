@@ -10,7 +10,7 @@ import smtplib
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from send_email import sendmail
+from sendMail import sendmail
 
 #display = Display(visible=0, size=(800, 600))
 #display.start()
@@ -35,7 +35,6 @@ for option in select:
 time.sleep(2)
 price = driver.find_element_by_xpath('//*[@id="app"]/div/div/div/div[2]/div[2]/div[3]/div[1]/div/span[2]')
 print (price.text)
-
+sendmail(price.text)
 driver.quit()
 
-sendmail(price.text)
