@@ -37,7 +37,8 @@ def pick():
 			#print(picked)
 			cursor.execute(update_sql, (id,))
 			connection.commit()
-			getChart(picked[1])
+			path = "/Users/seanxu/workspace/python_test/stockscript/stockImgs/"
+			getChart(picked[1], path)
 
 	except (Exception, psycopg2.Error) as error:
 		if (connection):

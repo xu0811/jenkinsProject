@@ -4,8 +4,9 @@ from datetime import date
 import requests
 import re
 
-def getChart(symbol):
-    url = 'https://bigcharts.marketwatch.com/quickchart/quickchart.asp?symb=' + symbol + '&insttype=&freq=7&show=&time=3'
+def getChart(symbol, path):
+    #url = 'https://bigcharts.marketwatch.com/quickchart/quickchart.asp?symb=' + symbol + '&insttype=&freq=7&show=&time=3'
+    url = 'https://bigcharts.marketwatch.com/quickchart/quickchart.asp?symb=' + symbol + '&insttype=&freq=1&show=&time=5'
     html_content = requests.get(url).text
     soup = BeautifulSoup(html_content, "lxml")
     gdp_table = soup.find("td", attrs={"class": "padded vatop"})
@@ -17,7 +18,7 @@ def getChart(symbol):
 
     new = m_today.replace('-', '_')
 
-    urllib.request.urlretrieve(url, "/Users/seanxu/workspace/python_test/stockscript/stockImgs/" + symbol + "_" + m_today.replace('-', '_') + "_" + ".jpg")
+    urllib.request.urlretrieve(url, path + symbol + "_" + m_today.replace('-', '_') + "_" + ".jpg")
 
 
-getChart('IRTC')
+#getChart('IRTC')
