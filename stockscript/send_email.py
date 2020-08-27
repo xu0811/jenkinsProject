@@ -6,7 +6,8 @@ from fetchHistory import fetchHistory
 
 def sendmail(msg):
     sender_email = "ready6302016@gmail.com"
-    receiver_email = "hsu0811@gmail.com"
+    receiver_email = "ready6302016@gmail.com"
+    #receiver_email = "hsu0811@gmail.com"
     password = "06302016"
 
     message = MIMEMultipart("alternative")
