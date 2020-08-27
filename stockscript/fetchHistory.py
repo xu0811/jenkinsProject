@@ -21,25 +21,32 @@ def fetchHistory(symbol):
         td_elements_data = tr_elements.find_all("td")
         #print(td_elements_data[0])
         ct = 0
+        dividend_flag = 0
         for td_data in td_elements_data:
-            if ct == 0:
+            #print(td_data)
+            if ct == 0: #date
                 td_elements.append(td_data.get_text())
-            elif ct == 6:
+            elif ct == 6: #volume
                 td_elements.append(int((td_data.get_text()).replace(',', '')))
-            else:
-                td_elements.append(float(td_data.get_text()))
+            else: #price
+                price_data = td_data.get_text()
+                if 'Dividend' in price_data:
+                    #td_elements.append(float(0))
+                    dividend_flag = 1
+                    break
+                else:
+                    td_elements.append(float(price_data))
             ct += 1
         new_td_elements.append(td_elements)
-        high_price.append(td_elements[2])
-        close_price.append(td_elements[4])
+        if (dividend_flag == 0):
+            high_price.append(td_elements[2])
+            close_price.append(td_elements[4])
+
         td_elements = []
     #new_close_price = close_price.reverse()
-
     rev_close_price = list(reversed(close_price))
     rev_high_price = list(reversed(high_price))
     #print(new_td_elements[0])
-    print(close_price)
-    #print(rev_close_price)
 
     flag = 0
     total = len(rev_close_price)
@@ -53,9 +60,10 @@ def fetchHistory(symbol):
                 print(i)
                 flag += 1
 
+
     result = str(flag) + " out of " + str(total) + " = " + str(flag/total)
     #print(result)
     return result
     #print(len(new_td_elements))
 
-print(fetchHistory('TRUP'))
+print(fetchHistory('CPCAY'))

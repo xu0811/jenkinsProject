@@ -22,17 +22,19 @@ def pick():
 		connection.commit()
 		#print(check_value)
 		res = cursor.fetchall()
-		print(res)
+		print(res) #Get all the stocks that meet next_day_chg > 0.1
 
 		final_ver = ''
 		for sym in res:
 			final_ver += sym[1] + ' : ' + fetchHistory(sym[1]) + '\n'
-
+		print("final")
+		#print(final_ver)
 		update_sql = """ UPDATE most_gainers set mark = 'picked' WHERE id = %s """
 		sendmail(final_ver)
+		print(final_ver)
 		for picked in res:
 			id = picked[0]
-			#print(update_sql, update_value)
+			#print(picked)
 			cursor.execute(update_sql, (id,))
 			connection.commit()
 			getChart(picked[1])
